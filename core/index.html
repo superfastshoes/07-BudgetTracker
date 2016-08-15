@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>Where's My Money Going?</title>
+	<!--bower:css-->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<!--endbower-->	
+	<!-- inject:css -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- endinject -->
+</head>
+
+<body class="container" ng-controller="BudgetController as budget">
+
+<!-- Make the left column, where the user will be entering their income data -->
+	<div>
+		<!-- Header -->
+		<h1 id="header">Budget Tracker</h1>
+	</div>
+
+	<!-- Income entries -->
+	<div class="col-md-6">
+		<form class="form-group">		
+			<div>
+				<!-- User will input the descrition of income -->
+				<label for="addDescription">Enter a Description</label>
+				<input type="text" name="addDescription" class="form-control input-sm" ng-model="budget.income.name"/>
+			</div>
+				
+			<div>
+				<!-- User will now input the amount of income -->
+				<label for="addAmount">Enter The Amount</label>
+				<input type="number" name="addAmount" class="form-control input-sm" ng-model="budget.income.amount"/>
+			</div>
+		</form>
+	<button type="submit" class="btn btn-warning" ng-click="budget.addIncome()">Add Income</button>
+		
+		<div>
+			<!-- Here the user will see a list of their income, displaying the description and amount -->
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>Description</td>
+						<td>Amount</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in budget.incomeList"> 
+						<!-- Here using ng-repeat, a list will populate begin to populate everytime the user inputs an inc -->
+						<td>{{x.name}}</td>
+						<td>{{x.amount | currency}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<!-- Expense entries -->
+	<div class="col-md-6">
+		<form class="form-group">		
+			<div>
+				<!-- User will input the descrition of the expense -->
+				<label for="expenseDesc">Enter a Description</label>
+				<input type="text" name="expenseDesc" class="form-control input-sm" ng-model="budget.expense.name"/>
+			</div>
+				
+			<div>
+				<!-- User will now input the amount of the expense -->
+				<label for="expenseAmount">Enter The Amount</label>
+				<input type="number" name="expenseAmount" class="form-control input-sm" ng-model="budget.expense.amount"/>
+			</div>
+		</form>
+	<button type="submit" class="btn btn-warning" ng-click="budget.addExpense()">Add Expense</button>
+		
+		<div>
+			<!-- Here the user will see a list of their expenses, displaying the description and amount -->
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>Description</td>
+						<td>Amount</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in budget.expenseList"> 
+						<!-- Here using ng-repeat, a list will populate begin to populate everytime the user inputs an exp. -->
+						<td>{{x.name}}</td>
+						<td>{{x.amount | currency}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<!-- Here a table will display a summary -->
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<tr>Summary</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Total Income</td>
+					<td>Total Expenses</td>
+				</tr>
+				<tr>
+					<td>{{budget.totalIncome | currency}}</td>
+					<td>{{budget.totalExpense | currency}}</td>
+				</tr>
+				<tr>
+					<td>What is left after spending</td>
+				</tr>
+				<tr>
+					<td>{{budget.amountLeft | currency}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- bower:js -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<!-- endbower -->	
+	<!-- inject:js -->
+	<script src="js/app.module.js"></script>
+	<script src="js/app.calculation.js"></script>
+	<script src="js/budget.controller.js"></script>
+	<!-- endinject -->
+</body>
+</html>
