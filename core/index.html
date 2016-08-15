@@ -24,13 +24,13 @@
 			<div>
 				<!-- User will input the descrition of income -->
 				<label for="addDescription">Enter a Description</label>
-				<input type="text" name="addDescription" class="form-control input-sm" ng-model="budget.income.name"/>
+				<input type="text" name="addDescription" class="form-control input-sm" placeholder="Enter Description Here" ng-model="budget.income.name"/>
 			</div>
 				
 			<div>
 				<!-- User will now input the amount of income -->
 				<label for="addAmount">Enter The Amount</label>
-				<input type="number" name="addAmount" class="form-control input-sm" ng-model="budget.income.amount"/>
+				<input type="number" name="addAmount" class="form-control input-sm" placeholder="Enter Amount Here" ng-model="budget.income.amount"/>
 			</div>
 		</form>
 	<button type="submit" class="btn btn-warning" ng-click="budget.addIncome()">Add Income</button>
@@ -48,7 +48,7 @@
 					<tr ng-repeat="x in budget.incomeList"> 
 						<!-- Here using ng-repeat, a list will populate begin to populate everytime the user inputs an inc -->
 						<td>{{x.name}}</td>
-						<td>{{x.amount | currency}}</td>
+						<td>{{x.amount | currency: '$'}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -61,13 +61,13 @@
 			<div>
 				<!-- User will input the descrition of the expense -->
 				<label for="expenseDesc">Enter a Description</label>
-				<input type="text" name="expenseDesc" class="form-control input-sm" ng-model="budget.expense.name"/>
+				<input type="text" name="expenseDesc" class="form-control input-sm" placeholder="Enter Description Here" ng-model="budget.expense.name"/>
 			</div>
 				
 			<div>
 				<!-- User will now input the amount of the expense -->
 				<label for="expenseAmount">Enter The Amount</label>
-				<input type="number" name="expenseAmount" class="form-control input-sm" ng-model="budget.expense.amount"/>
+				<input type="number" name="expenseAmount" class="form-control input-sm" placeholder="Enter Description Here" ng-model="budget.expense.amount"/>
 			</div>
 		</form>
 	<button type="submit" class="btn btn-warning" ng-click="budget.addExpense()">Add Expense</button>
@@ -85,7 +85,7 @@
 					<tr ng-repeat="x in budget.expenseList"> 
 						<!-- Here using ng-repeat, a list will populate begin to populate everytime the user inputs an exp. -->
 						<td>{{x.name}}</td>
-						<td>{{x.amount | currency}}</td>
+						<td>{{x.amount | currency: '$'}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -111,7 +111,7 @@
 					<td>What is left after spending</td>
 				</tr>
 				<tr>
-					<td>{{budget.amountLeft | currency}}</td>
+					<td>{{budget.amountLeft | currency: '$'}}</td>
 				</tr>
 			</tbody>
 		</table>
